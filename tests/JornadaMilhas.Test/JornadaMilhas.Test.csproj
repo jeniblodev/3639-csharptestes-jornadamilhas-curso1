@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\JornadaMilhasV1\JornadaMilhas.csproj" />
+  </ItemGroup>
+
 </Project>
