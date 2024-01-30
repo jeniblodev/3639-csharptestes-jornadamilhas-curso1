@@ -2,10 +2,10 @@ using JornadaMilhasV1.Modelos;
 
 namespace JornadaMilhas.Test;
 
-public class OfertaViagemTest
+public class OfertaViagemConstrutor
 {
     [Fact]
-    public void TestandoOfertaValida()
+    public void RetornaOfertaValidaQuandoDadosValidos()
     {
         //arrange
         Rota rota = new Rota("OrigemTeste", "DestinoTeste");
@@ -21,7 +21,7 @@ public class OfertaViagemTest
     }
 
     [Fact]
-    public void TestandoOfertaComRotaNula()
+    public void RetornaMensagemDeErroDeRotaOuPeriodoInvalidosQuandoRotaNula()
     {
         //arrange
         Rota rota = null;
@@ -34,5 +34,20 @@ public class OfertaViagemTest
         //assert
         Assert.Contains("A oferta de viagem não possui rota ou período válidos.", oferta.Erros.Sumario);
         Assert.False(oferta.EhValido);
+    }
+
+    [Fact]
+    public void RetornaMensagemDeErroDePrecoInvalidoQuandoPrecoMenorQueZero()
+    {
+        //arrange
+        Rota rota = new Rota("Origem1", "Destino1");
+        Periodo periodo = new Periodo(new DateTime(2024, 8, 20), new DateTime(2024, 8, 30));
+        double preco = -250;
+
+        //act
+        OfertaViagem oferta = new OfertaViagem(rota, periodo, preco);
+
+        //assert
+        Assert.Contains("O preço da oferta de viagem deve ser maior que zero.", oferta.Erros.Sumario);
     }
 }
