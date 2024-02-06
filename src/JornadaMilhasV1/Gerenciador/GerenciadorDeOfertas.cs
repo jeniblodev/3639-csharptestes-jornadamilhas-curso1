@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JornadaMilhasV1.Gerencidor;
+namespace JornadaMilhasV1.Gerenciador;
 public class GerenciadorDeOfertas
 {
     private List<OfertaViagem> ofertaViagem = new List<OfertaViagem>();
@@ -64,6 +64,8 @@ public class GerenciadorDeOfertas
         return false;
 
     }
+
+    public OfertaViagem? RecuperaMaiorDesconto(Func<OfertaViagem, bool> filtro) => ofertaViagem.FirstOrDefault();
 
 
     public void CarregarOfertas()
