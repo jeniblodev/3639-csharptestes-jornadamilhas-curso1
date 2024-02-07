@@ -54,9 +54,16 @@ public class GerenciadorDeOfertasRecuperaMaiorDesconto
             Ativa = true
         };
 
+        var ofertaInativa = new OfertaViagem(rota, fakerPeriodo.Generate(), 70)
+        {
+            Desconto = 40,
+            Ativa = false
+        };
+
 
         var lista = fakerOferta.Generate(200);
         lista.Add(ofertaEscolhida);
+        lista.Add(ofertaInativa);
         var gerenciador = new GerenciadorDeOfertas(lista);
         Func<OfertaViagem, bool> filtro = o => o.Rota.Destino.Equals("São Paulo");
         var precoEsperado = 40;
